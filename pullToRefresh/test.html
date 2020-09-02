@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/refresh.css">
+</head>
+
+<body>
+    <div class="header">标题</div>
+    <div class="container" id="container">
+        <ul>
+            <li></li>
+        </ul>
+    </div>
+    <script src="./js/refresh.js"></script>
+    <script>
+        let li = '';
+        for (let i = 0; i < 50; i++) {
+            li += `<li>${i}</li>`;
+        }
+        document.querySelector('#container>ul').innerHTML = li;
+        new pullToRefresh("#container").init()
+    </script>
+</body>
+
+</html>
