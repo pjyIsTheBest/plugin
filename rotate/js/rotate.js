@@ -30,21 +30,16 @@
             },
             touchEvt: function() {
                 var self = this;
-                document.addEventListener('touchstart', function(event) {
+                this.container.addEventListener('touchstart', function(event) {
                     self.touchXStart = event.targetTouches[0].clientX;
                     self.touchYStart = event.targetTouches[0].clientY
                 })
-                document.addEventListener('touchend', function(event) {
+                this.container.addEventListener('touchend', function(event) {
                     var touchXEnd = event.changedTouches[0].clientX;
                     var distance = touchXEnd - self.touchXStart; //滑动距离
                     //在container范围内触摸且横向滑动大于50触发
-                    if (
-                        self.touchXStart > self.offsetLeft &&
-                        self.touchXStart < (self.offsetLeft + self.containerWidth) &&
-                        self.touchYStart > self.offsetTop &&
-                        self.touchYStart < (self.offsetTop + self.containerHeight) &&
-                        Math.abs(distance) > 50
-                    ) {
+                    if (Math.abs(distance) > 50) {
+                        event.preventDefault()
                         clearInterval(self.timer) //有效滑动，取消自动滚动
                         if (distance > 0) { //右滑
                             self.activeIndex--;
